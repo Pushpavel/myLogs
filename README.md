@@ -1,7 +1,7 @@
 # myLogs
 - __Description__ : personal general purpose logging system
 - __Tech stack__ : svelte, MySQL
-- __Roll no__ : CS19B1042
+- __Roll no__ : CS19B1042, CS19B1065, CS19B1055
 - __Course__ : CS309 - Database Management System Laboratory
 ## Idea 
 To build a logging system that is simple and flexible.
