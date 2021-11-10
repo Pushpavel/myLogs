@@ -1,3 +1,7 @@
+<script lang="ts">
+    import {Log} from "../../server/src/types";
+     export let log : Log;
+</script>
 <div>
-    <p>Text here!</p>
+    <p>{log.text}</p>
 </div>

@@ -3,14 +3,13 @@
     import Log from "./components/Log.svelte";
 
     let logs = []
-
 </script>
 
 <main>
     <EditableLog/>
     <!--    Filter-->
     {#each logs as log}
-        <Log/>
+        <Log log= {log} />
     {/each}
 </main>
 
