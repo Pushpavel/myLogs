@@ -2,6 +2,7 @@
     import EditableLog from "./components/EditableLog.svelte";
     import Log from "./components/Log.svelte";
     import {getLogs} from "./lib/api_interface";
+    import {onMount} from "svelte";
 
     let logs = []
     let refreshPromise = null
@@ -15,15 +16,16 @@
             refreshPromise = null
         }
     }
+
+    onMount(refreshLogs)
 </script>
 
 <main>
-    <EditableLog/>
+    <EditableLog on:apply={refreshLogs}/>
     <!--    Filter-->
     {#each logs as log}
         <Log log={log}/>
     {/each}
-    <button on:click={refreshLogs}>Click me</button>
 </main>
 
 <style>
