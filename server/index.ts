@@ -1,10 +1,9 @@
-import * as express from 'express'
-import * as cors from 'cors'
+import express from 'express'
+import cors from 'cors'
 
 const app = express()
 
-app.use(cors({
-    origin: true
-}))
+app.use(cors({origin: true}))
 
+console.log("listening...")
 app.listen(2100)
