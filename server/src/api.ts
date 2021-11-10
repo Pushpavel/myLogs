@@ -1,6 +1,6 @@
 import {Express} from "express";
 import {Connection} from "mysql2/promise";
-import {Log, NewLog} from "./types";
+import {NewLog} from "./types";
 
 export default async function setupAPI(app: Express, connection: Connection) {
 
@@ -17,11 +17,16 @@ export default async function setupAPI(app: Express, connection: Connection) {
 
     app.get("/logs/get", async (req, res) => {
         // get log
+        const searchString = req.query.searchString as string;
         try {
-            const result = await connection.execute(`SELECT * FROM v_logs`)
-            res.setHeader('Content-Type', 'application/json');
+            let result;
+            if (searchString)
+                result = await connection.execute(`SELECT * FROM v_logs WHERE MATCH(text) AGAINST (?)`, [searchString])
+            else
+                result = await connection.execute(`SELECT * FROM v_logs`)
             res.send(result[0])
         } catch (e) {
+            console.log(e)
             res.sendStatus(500)
         }
     })

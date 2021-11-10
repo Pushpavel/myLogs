@@ -11,9 +11,11 @@ export function insertLog(log: NewLog) {
     });
 }
 
-export async function getLogs() {
-    const res = await fetch("http://localhost:2100/logs/get", {
-        method: "GET"
-    })
-    return res.json();
+// get s all logs from localhost:2100/logs/all by get request passing searchString as query params
+export async function getLogs(searchString: string) {
+    const url = new URL("http://localhost:2100/logs/get");
+    if (searchString)
+        url.searchParams.append("searchString", searchString);
+    const response = await fetch(url.toString(), {method: "GET"});
+    return await response.json();
 }

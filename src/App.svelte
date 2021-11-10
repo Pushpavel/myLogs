@@ -1,15 +1,20 @@
+<!--suppress CommaExpressionJS -->
 <script lang="ts">
     import EditableLog from "./components/EditableLog.svelte";
     import Log from "./components/Log.svelte";
     import {getLogs} from "./lib/api_interface";
     import {onMount} from "svelte";
+    import SearchBar from "./components/SearchBar.svelte";
 
     let refreshPromise: Promise<Log[]> = null
+    let search = ""
 
     // retrieves logs from the server and updates the logs array
     async function refreshLogs() {
-        refreshPromise = getLogs()
+        refreshPromise = getLogs(search)
     }
+
+    $:search, refreshLogs()
 
     // initial refresh
     onMount(refreshLogs)
@@ -17,7 +22,7 @@
 
 <main>
     <EditableLog on:apply={refreshLogs}/>
-    <!--    Filter-->
+    <SearchBar bind:search/>
     {#await refreshPromise}
         Loading...
     {:then logs}
