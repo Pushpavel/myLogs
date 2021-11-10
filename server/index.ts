@@ -9,6 +9,7 @@ import setupAPI from "./src/api";
     // server setup
     const app = express()
     app.use(cors({origin: true}))
+    app.use(express.json())
 
     // connect to MySql
     const connectionInfo = getConnectionInfo()

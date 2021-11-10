@@ -1,7 +1,7 @@
-import type {Log} from "../../server/src/types";
+import type {NewLog} from "../../server/src/types";
 
 // inserts log at localhost:2100/logs/insert by post request
-export function insertLog(log: Log) {
+export function insertLog(log: NewLog) {
     return fetch("http://localhost:2100/logs/insert", {
         method: "POST",
         headers: {
