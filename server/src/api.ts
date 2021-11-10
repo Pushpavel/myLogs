@@ -2,7 +2,8 @@ import {Express} from "express";
 import {Connection} from "mysql2/promise";
 import {Log, NewLog} from "./types";
 
-export default function setupAPI(app: Express, connection: Connection) {
+export default async function setupAPI(app: Express, connection: Connection) {
+
     app.post("/logs/insert", async (req, res) => {
         // add log
         const data = req.body as NewLog;
@@ -14,7 +15,13 @@ export default function setupAPI(app: Express, connection: Connection) {
         res.sendStatus(200);
     })
 
-    app.get("logs/get", (req, res) => {
+    app.get("logs/get", async (req, res) => {
         // get log
+        try {
+            const result = await connection.execute(`SELECT * FROM v_logs`)
+            res.send(result[0])
+        } catch (e) {
+            res.sendStatus(500)
+        }
     })
 }
