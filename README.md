@@ -31,3 +31,7 @@ To build a logging system that is simple and flexible.
 - MySQL
 - Server
 - Svelte web app
+
+### Tables in Database
+- logs(id, text, timestamp)
+- tags(log_id, label)
