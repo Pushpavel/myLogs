@@ -15,10 +15,11 @@ export default async function setupAPI(app: Express, connection: Connection) {
         res.sendStatus(200);
     })
 
-    app.get("logs/get", async (req, res) => {
+    app.get("/logs/get", async (req, res) => {
         // get log
         try {
             const result = await connection.execute(`SELECT * FROM v_logs`)
+            res.setHeader('Content-Type', 'application/json');
             res.send(result[0])
         } catch (e) {
             res.sendStatus(500)
