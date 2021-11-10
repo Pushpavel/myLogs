@@ -4,28 +4,27 @@
     import {getLogs} from "./lib/api_interface";
     import {onMount} from "svelte";
 
-    let logs = []
-    let refreshPromise = null
+    let refreshPromise: Promise<Log[]> = null
 
+    // retrieves logs from the server and updates the logs array
     async function refreshLogs() {
-        const p = getLogs()
-        refreshPromise = p
-        const l = await p
-        if (p == refreshPromise) {
-            logs = l
-            refreshPromise = null
-        }
+        refreshPromise = getLogs()
     }
 
+    // initial refresh
     onMount(refreshLogs)
 </script>
 
 <main>
     <EditableLog on:apply={refreshLogs}/>
     <!--    Filter-->
-    {#each logs as log}
-        <Log log={log}/>
-    {/each}
+    {#await refreshPromise}
+        Loading...
+    {:then logs}
+        {#each logs ?? [] as log}
+            <Log log={log}/>
+        {/each}
+    {/await}
 </main>
 
 <style>
