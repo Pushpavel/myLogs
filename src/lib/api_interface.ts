@@ -1,7 +1,7 @@
-import type {Log} from "../../server/src/types";
+import type {NewLog} from "../../server/src/types";
 
 // inserts log at localhost:2100/logs/insert by post request
-export function insertLog(log: Log) {
+export function insertLog(log: NewLog) {
     return fetch("http://localhost:2100/logs/insert", {
         method: "POST",
         headers: {
@@ -10,13 +10,10 @@ export function insertLog(log: Log) {
         body: JSON.stringify(log)
     });
 }
-export function getLog() {
-    fetch("http://localhost:2100/logs/get", {
-        method: "GET",
-        //headers: {
-        //    "Content-Type": "application/json"
-        //},
-    }).then((res)=>{
-        return res.json();
-    }).then((r)=>{console.log(r)});
+
+export async function getLogs() {
+    const res = await fetch("http://localhost:2100/logs/get", {
+        method: "GET"
+    })
+    return res.json();
 }
