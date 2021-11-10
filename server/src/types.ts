@@ -6,3 +6,9 @@ export interface Log extends NewLog {
 export interface NewLog {
     text: string
 }
+
+export interface FilterParams {
+    text?: string,
+    startTime?: number,
+    endTime?: number,
+}

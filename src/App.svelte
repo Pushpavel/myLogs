@@ -11,7 +11,9 @@
 
     // retrieves logs from the server and updates the logs array
     async function refreshLogs() {
-        refreshPromise = getLogs(search)
+        refreshPromise = getLogs({
+            text: search
+        })
     }
 
     $:search, refreshLogs()
