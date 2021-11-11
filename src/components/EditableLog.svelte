@@ -23,7 +23,7 @@
             onApply(e)
     }
 </script>
-<div on:keydown={onKeyDown} class="relative w-1/2 m-4 text-gray-700">
+<div on:keydown={onKeyDown} class="relative w-3/4 m-4 text-gray-700">
     <pre class="insideContainer" aria-hidden="true" style="min-height: 2.2em;">{value + '\n\n'}</pre>
     <textarea autofocus bind:this={textArea} bind:value
               placeholder="Enter your log (Ctrl + Enter)" class="insideContainer absolute w-full h-full resize-none top-0"></textarea>

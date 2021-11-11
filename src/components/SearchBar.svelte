@@ -10,7 +10,7 @@
         }, 100)
     }
 </script>
-<div class="flex relative w-1/2 m-4">
+<div class="flex relative w-3/4 m-4">
      <span on:click={()=>input.focus()}
            class="border-solid rounded-l-md inline-flex  items-center px-3 border-t border-r-0 bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor"><path
@@ -19,6 +19,7 @@
     </span>
     <input on:keyup={debounce} bind:this={input} placeholder="Search"
            class="w-1/2 border-solid rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+
 </div>
 
 <style>
