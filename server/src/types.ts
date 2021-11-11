@@ -11,4 +11,5 @@ export interface FilterParams {
     text?: string,
     startTime?: number,
     endTime?: number,
+    descending?: boolean
 }

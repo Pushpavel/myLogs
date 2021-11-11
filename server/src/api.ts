@@ -21,13 +21,27 @@ export default async function setupAPI(app: Express, connection: Connection) {
         try {
             let query = `SELECT * FROM v_logs`;
             const values = [];
+            const whereClauses = []
 
             if (params.text) {
-                query += ` WHERE MATCH(text) AGAINST (?)`;
+                whereClauses.push(`MATCH(text) AGAINST (?)`);
                 values.push(params.text);
             }
 
-            query += ` ORDER BY timestamp DESC`;
+            if (params.startTime) {
+                whereClauses.push(`timestamp >= ?`);
+                values.push(params.startTime);
+            }
+
+            if (params.endTime) {
+                whereClauses.push(`timestamp <= ?`);
+                values.push(params.endTime);
+            }
+
+            if (whereClauses.length != 0)
+                query += ` WHERE ` + whereClauses.join(" AND ");
+
+            query += ` ORDER BY timestamp ${params.descending ? 'DESC' : 'ASC'}`;
 
             const result = await connection.execute(query, values)
             res.send(result[0])
