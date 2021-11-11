@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import {connectToMySQL, getConnectionInfo} from "./src/connection";
 import setupAPI from "./src/api";
+import {setupDatabase} from "./src/database";
 
 // self invoking async function as we can't use top level await in nodejs
 (async function main() {
@@ -16,6 +17,7 @@ import setupAPI from "./src/api";
     const connection = await connectToMySQL(connectionInfo)
 
     // setup api
+    await setupDatabase(connection)
     setupAPI(app, connection)
 
     console.log("listening...")

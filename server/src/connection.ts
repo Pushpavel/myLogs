@@ -16,7 +16,6 @@ export function getConnectionInfo(): ConnectionOptions {
         port: mysqlPort,
         user: mysqlUser,
         password: mysqlPassword,
-        database: "MY_LOGS" /*fixme: initially this db may not exists*/
     }
 }
 

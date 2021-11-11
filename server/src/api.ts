@@ -2,7 +2,7 @@ import {Express} from "express";
 import {Connection} from "mysql2/promise";
 import {FilterParams, NewLog} from "./types";
 
-export default async function setupAPI(app: Express, connection: Connection) {
+export default function setupAPI(app: Express, connection: Connection) {
 
     app.post("/logs/insert", async (req, res) => {
         // add log
