@@ -16,13 +16,13 @@ function serve() {
         if (server) server.kill(0);
     }
 
-	return {
-		writeBundle() {
-			if (server) return;
-			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
-				stdio: ['ignore', 'inherit', 'inherit'],
-				shell: true
-			});
+    return {
+        writeBundle() {
+            if (server) return;
+            server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+                stdio: ['ignore', 'inherit', 'inherit'],
+                shell: true
+            });
 
             process.on('SIGTERM', toExit);
             process.on('exit', toExit);
@@ -40,7 +40,11 @@ export default {
     },
     plugins: [
         svelte({
-            preprocess: sveltePreprocess({sourceMap: !production}),
+            preprocess: sveltePreprocess({
+                sourceMap: !production, postcss: {
+                    plugins: [require('tailwindcss'), require('autoprefixer')]
+                }
+            }),
             compilerOptions: {
                 // enable run-time checks when not in production
                 dev: !production

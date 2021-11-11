@@ -31,3 +31,9 @@
         <Log log={log}/>
     {/each}
 {/await}
+
+<style global>
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+</style>
