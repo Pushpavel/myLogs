@@ -6,6 +6,7 @@
     import { onMount } from "svelte";
     import SearchBar from "./components/SearchBar.svelte";
     import Litepicker from "litepicker";
+import SkeletonLoader from "./components/SkeletonLoader.svelte";
 
     let refreshPromise: Promise<Log[]> = null;
     let search = "";
@@ -37,13 +38,16 @@
 
 <EditableLog on:apply={refreshLogs} />
 <SearchBar bind:search />
+
+
 {#await refreshPromise}
-    Loading...
+<SkeletonLoader/>
 {:then logs}
     {#each logs ?? [] as log}
         <Log {log} />
     {/each}
 {/await}
+
 
 <style global>
     @tailwind base;
