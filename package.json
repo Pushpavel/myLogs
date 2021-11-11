@@ -27,6 +27,7 @@
   "dependencies": {
     "litepicker": "^2.0.12",
     "sirv-cli": "^1.0.0",
+    "svelte-markdown": "^0.1.13",
     "svelte-tags-input": "^2.8.1"
   }
 }

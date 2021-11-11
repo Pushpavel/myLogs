@@ -1,7 +1,9 @@
 <script lang="ts">
-    import {Log} from "../../server/src/types";
-     export let log : Log;
+    import type {Log} from "../../server/src/types";
+    import SvelteMarkdown from 'svelte-markdown'
+
+    export let log: Log;
 </script>
 <div>
-    <p>{log.text}</p>
+    <SvelteMarkdown source={log.text}/>
 </div>
