@@ -15,7 +15,7 @@
     // retrieves logs from the server and updates the logs array
     async function refreshLogs() {
         refreshPromise = getLogs({
-            text: search,
+            text: search.trim(),
             startTime: startDate,
             endTime: endDate,
             descending: true,

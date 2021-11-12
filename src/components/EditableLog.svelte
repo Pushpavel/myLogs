@@ -8,7 +8,7 @@
     let value = ""
 
     async function onApply(e) {
-        if (value) {
+        if (value.trim()) {
             e.preventDefault()
             const log: NewLog = {text: value};
             value = ""
@@ -26,7 +26,8 @@
 <div on:keydown={onKeyDown} class="relative w-3/4 m-4 text-gray-700">
     <pre class="insideContainer" aria-hidden="true" style="min-height: 2.2em;">{value + '\n\n'}</pre>
     <textarea autofocus bind:this={textArea} bind:value
-              placeholder="Enter your log (Ctrl + Enter)" class="insideContainer absolute w-full h-full resize-none top-0"></textarea>
+              placeholder="Enter your log (Ctrl + Enter)"
+              class="insideContainer absolute w-full h-full resize-none top-0"></textarea>
     <button on:click={onApply} class="z-30 absolute bottom-0 right-0 m-2">Log</button>
 </div>
 
