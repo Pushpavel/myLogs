@@ -30,12 +30,12 @@ export default function setupAPI(app: Express, connection: Connection) {
 
             if (params.startTime) {
                 whereClauses.push(`timestamp >= ?`);
-                values.push(params.startTime);
+                values.push(Number(params.startTime));
             }
 
             if (params.endTime) {
                 whereClauses.push(`timestamp <= ?`);
-                values.push(params.endTime + 24 * 60 * 60 * 1000 /* add one day */);
+                values.push(Number(params.endTime) + 24 * 60 * 60 * 1000 /* add one day */);
             }
 
             if (whereClauses.length != 0)
