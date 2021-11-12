@@ -12,12 +12,13 @@ export function insertLog(log: NewLog) {
 }
 
 // get logs from localhost:2100/logs/get by get request passing query params
-export async function getLogs(fileParams: FilterParams) {
+export async function getLogs(filterParams: FilterParams) {
     const url = new URL("http://localhost:2100/logs/get");
 
     // add query params to url
-    for (const [key, value] of Object.entries(fileParams))
-        url.searchParams.append(key, value);
+    for (const [key, value] of Object.entries(filterParams))
+        if (value)
+            url.searchParams.append(key, value);
 
     const response = await fetch(url.toString(), {method: "GET"});
     return await response.json();
