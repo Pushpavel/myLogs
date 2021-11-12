@@ -50,4 +50,15 @@ export default function setupAPI(app: Express, connection: Connection) {
             res.sendStatus(500)
         }
     })
+
+    // delete log by primary key "id"
+    app.delete("/logs/delete", async (req, res) => {
+        const id = req.query.id;
+        try {
+            await connection.execute(`DELETE FROM LOGS WHERE id = ?`, [id])
+        } catch (e) {
+            res.sendStatus(500);
+        }
+        res.sendStatus(200);
+    })
 }

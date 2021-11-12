@@ -37,7 +37,7 @@
     <SkeletonLoader/>
 {:then logs}
     {#each logs ?? [] as log}
-        <Log {log}/>
+        <Log on:delete={refreshLogs} {log}/>
     {/each}
 {/await}
 

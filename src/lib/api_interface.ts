@@ -23,3 +23,8 @@ export async function getLogs(filterParams: FilterParams) {
     const response = await fetch(url.toString(), {method: "GET"});
     return await response.json();
 }
+
+// delete log by id from localhost:2100/logs/delete by delete request
+export function deleteLog(id: number) {
+    return fetch(`http://localhost:2100/logs/delete?id=${id}`, {method: "DELETE"});
+}

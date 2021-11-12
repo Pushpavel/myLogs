@@ -1,5 +1,5 @@
 export interface Log extends NewLog {
-    id: string,
+    id: number,
     timestamp: number
 }
 
