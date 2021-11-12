@@ -11,6 +11,7 @@
     let search = "";
     let startDate = null
     let endDate = null
+    let descending = true
 
     // retrieves logs from the server and updates the logs array
     async function refreshLogs() {
@@ -18,18 +19,18 @@
             text: search.trim(),
             startTime: startDate,
             endTime: endDate,
-            descending: true,
+            descending,
         });
     }
 
-    $: search, startDate, endDate, refreshLogs();
+    $: search, startDate, endDate, descending, refreshLogs();
 
     // initial refresh
     onMount(refreshLogs);
 </script>
 
 <EditableLog on:apply={refreshLogs}/>
-<FilterSection bind:search bind:startDate bind:endDate/>
+<FilterSection bind:search bind:startDate bind:endDate bind:descending/>
 
 
 {#await refreshPromise}

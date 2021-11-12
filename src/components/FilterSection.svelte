@@ -4,6 +4,7 @@
     export let search = ""
     export let startDate: number = null
     export let endDate: number = null
+    export let descending = true
 
     let timer = null
     let input: HTMLInputElement = null
@@ -25,6 +26,21 @@
     <input on:keyup={debounce} bind:this={input} placeholder="Search"
            class="w-1/2 border-solid rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
     <DateFilterBtn bind:startDate bind:endDate/>
+
+    <button on:click={()=>descending = !descending}
+            class="mx-2 px-3 hover:bg-gray-50 border-solid rounded-md inline-flex  items-center border bg-white border-gray-300 shadow-sm text-sm">
+        {#if descending}
+            <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                <path d="M0 0h24v24H0V0z" fill="none"/>
+                <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/>
+            </svg>
+        {:else }
+            <svg height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                <path d="M0 0h24v24H0V0z" fill="none"/>
+                <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/>
+            </svg>
+        {/if}
+    </button>
 </div>
 
 <style>
