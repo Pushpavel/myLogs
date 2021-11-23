@@ -9,17 +9,18 @@ export default function setupAPI(app: Express, connection: Connection) {
         const data = req.body as NewLog;
         try {
             await connection.execute(`INSERT INTO LOGS (text, timestamp) VALUES (?, now())`, [data.text])
+            res.sendStatus(200);
         } catch (e) {
             res.sendStatus(500);
+            console.log(e)
         }
-        res.sendStatus(200);
     })
 
     app.get("/logs/get", async (req, res) => {
         // get log
         const params: FilterParams = req.query;
         try {
-            let query = `SELECT * FROM v_logs`;
+            let query = `SELECT * FROM V_LOGS`;
             const values = [];
             const whereClauses = []
 
@@ -56,9 +57,10 @@ export default function setupAPI(app: Express, connection: Connection) {
         const id = req.query.id;
         try {
             await connection.execute(`DELETE FROM LOGS WHERE id = ?`, [id])
+            res.sendStatus(200);
         } catch (e) {
             res.sendStatus(500);
+            console.log(e)
         }
-        res.sendStatus(200);
     })
 }
