@@ -7,9 +7,9 @@ export function getConnectionInfo(): ConnectionOptions {
 
     // get mysql server info from user
     const mysqlHost = prompt('Enter mysql host: (localhost) ', 'localhost')
-    const mysqlPort = Number(prompt('Enter mysql port: (3316) ', '3316' /*todo: change this to 3306*/))
+    const mysqlPort = Number(prompt('Enter mysql port: (3306) ', '3306'))
     const mysqlUser = prompt('Enter mysql user: (root) ', 'root')
-    const mysqlPassword = prompt('Enter mysql password: (7856) ', '7856'/*todo: remove this*/)
+    const mysqlPassword = prompt('Enter mysql password: (Qwerty@1) ', 'Qwerty@1')
 
     return {
         host: mysqlHost,
